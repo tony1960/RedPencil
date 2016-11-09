@@ -15,9 +15,18 @@ public class ItemPrice {
     float reducedPrice;
     int daysStable;
 
+    public void initCondtions (float price, int daysStable){
+        this.price = price;
+        this.daysStable = daysStable;
+    }
+    
+    
+    /*   reafactored
     public ItemPrice(float price) {
+
         this.price = price;
     }
+    */
 
     public void setDaysStable(int daysStable) {
         this.daysStable = daysStable;
@@ -42,16 +51,22 @@ public class ItemPrice {
         if (reducedPrice.compareTo(high) > 0) {
             return false;
         }
-        
-        
 
         if (daysStable < 30) {
             return false;
         }
-        
 
+        daysStable = 0;
         this.reducedPrice = reducedPrice;
 
         return true;
     }
+
+    public Boolean promotionStillValid() {
+
+        if (daysStable > 30) {
+            return false;
+        }
+        return true;
+    }    
 }
