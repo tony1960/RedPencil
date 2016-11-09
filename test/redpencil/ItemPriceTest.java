@@ -60,7 +60,7 @@ public class ItemPriceTest {
 
         instance.initCondtions(10, 31);
         Boolean result = instance.priceReduction(9.6F);
-        assertFalse("True mean activation can occur", result);
+        assertFalse("True mean activation can not occur", result);
     }
     
     
@@ -79,7 +79,7 @@ public class ItemPriceTest {
 
         instance.initCondtions(10, 31);
         Boolean result = instance.priceReduction(1.0F);
-        assertFalse("True mean activation can occur", result);
+        assertFalse("True mean activation can not occur", result);
     }
     
 
@@ -102,6 +102,15 @@ public class ItemPriceTest {
         assertTrue("True mean activation can occur ", result);
     }
 
+    public void testPriceReductiomDaysStableFewer() {
+        System.out.println("priceReductionUpperBound");
+      
+                instance.initCondtions(10, 29);
+
+        Boolean result = instance.priceReduction(8.5F);
+        assertFalse("True mean activation can not occur ", result);
+    }
+    
     
     @Test
     public void testCheckPromotion() {
@@ -109,22 +118,21 @@ public class ItemPriceTest {
         Boolean expectedValue = true;
                 instance.initCondtions(10, 29);
 
-        Boolean result = instance.priceReduction(8.5F);
         Boolean valid = instance.promotionStillValid();
-     assertTrue("True mean activation can occur ", valid);
-
+     assertTrue("True mean promotion is still valid", valid);
     }
     
-   
     @Test
-     public void testPriceFurtherReduction() {
-        System.out.println("priceReduction");
-                instance.initCondtions(10, 29);
-        int ExpectedValue = 1;
-        Boolean result = instance.priceReduction(9.0F);
-        int promotionDays = instance.daysRemaining();
-        //assertTrue("Init Test", result);
-        assertEquals (ExpectedValue, promotionDays);
+    public void testCheckPromotionFalse() {
+        System.out.println("testCheckPromotion");
+        Boolean expectedValue = true;
+                instance.initCondtions(10, 31);
+        Boolean valid = instance.promotionStillValid();
+     assertFalse("True mean promotion is not valid", valid);
     }
+    
+    
+   
+  
   
 }
