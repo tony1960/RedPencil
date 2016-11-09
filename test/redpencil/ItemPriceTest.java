@@ -17,12 +17,14 @@ import static org.junit.Assert.*;
  * @author tonys
  */
 public class ItemPriceTest {
-    
+                 ItemPrice instance;
+
     public ItemPriceTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+            
     }
     
     @AfterClass
@@ -31,6 +33,8 @@ public class ItemPriceTest {
     
     @Before
     public void setUp() {
+       instance = new ItemPrice(10.0F);
+
     }
     
     @After
@@ -42,12 +46,19 @@ public class ItemPriceTest {
      */
     @Test
     public void testPriceReduction() {
-        System.out.println("priceReduction");
-        ItemPrice instance = new ItemPrice();
-        float expResult = 0.0F;
-        float result = instance.priceReduction();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
+        System.out.println("priceReduction");       
+        Boolean result = instance.priceReduction(9.0F);
+        assertTrue ("Price falls wtih bouns", result);
     }
+    
+    @Test
+    public void testPriceReductionLowerBound(){
+        System.out.println("priceReductionLowerBound");
+        Boolean result = instance.priceReduction(7.0F);
+        assertTrue ("Price falls wtih bouns", result);
+    }
+    
+    
+    
     
 }
