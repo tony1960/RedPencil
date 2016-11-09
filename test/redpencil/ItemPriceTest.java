@@ -17,26 +17,28 @@ import static org.junit.Assert.*;
  * @author tonys
  */
 public class ItemPriceTest {
-                 ItemPrice instance;
+
+    ItemPrice instance;
 
     public ItemPriceTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
-            
+
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-       instance = new ItemPrice(10.0F);
+        instance = new ItemPrice(10.0F);
+        instance.setDaysStable(100);
 
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -46,19 +48,32 @@ public class ItemPriceTest {
      */
     @Test
     public void testPriceReduction() {
-        System.out.println("priceReduction");       
+        System.out.println("priceReduction");
+
         Boolean result = instance.priceReduction(9.0F);
-        assertTrue ("Price falls wtih bouns", result);
+        assertTrue("Init Test", result);
     }
-    
+
     @Test
-    public void testPriceReductionLowerBound(){
+    public void testPriceReductionLowerBound() {
         System.out.println("priceReductionLowerBound");
         Boolean result = instance.priceReduction(7.0F);
-        assertTrue ("Price falls wtih bouns", result);
+        assertTrue("Bounds Test", result);
     }
-    
-    
-    
-    
+
+    @Test
+    public void testPriceReductionUpperBound() {
+        System.out.println("priceReductionUpperBound");
+        Boolean result = instance.priceReduction(9.5F);
+        assertTrue("Price falls wtih bound", result);
+    }
+
+    @Test
+    public void testPriceReductiomDaysStable() {
+        System.out.println("priceReductionUpperBound");
+        instance.setDaysStable(31);
+        Boolean result = instance.priceReduction(8.5F);
+        assertTrue("Price falls wtih bound and days stable ", result);
+    }
+
 }
