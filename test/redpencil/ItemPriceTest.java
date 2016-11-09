@@ -55,11 +55,11 @@ public class ItemPriceTest {
     }
 
     @Test
-    public void testPriceReductionFalseLow() {
+    public void testPriceReductionFalseHigh() {
         System.out.println("priceReduction");
 
         instance.initCondtions(10, 31);
-        Boolean result = instance.priceReduction(1.0F);
+        Boolean result = instance.priceReduction(9.6F);
         assertFalse("True mean activation can occur", result);
     }
     
@@ -72,6 +72,16 @@ public class ItemPriceTest {
         Boolean result = instance.priceReduction(7.0F);
         assertTrue("True mean activation can occur", result);
     }
+    
+    @Test
+    public void testPriceReductionFalseLow() {
+        System.out.println("priceReduction");
+
+        instance.initCondtions(10, 31);
+        Boolean result = instance.priceReduction(1.0F);
+        assertFalse("True mean activation can occur", result);
+    }
+    
 
     @Test
     public void testPriceReductionUpperBound() {
