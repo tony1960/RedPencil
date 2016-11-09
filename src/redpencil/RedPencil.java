@@ -15,8 +15,8 @@ public class RedPencil {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ItemPrice ip = new ItemPrice();
-        float price = ip.priceReduction();
+        ItemPrice ip = new ItemPrice(10.0F);
+        Boolean priceSet = ip.priceReduction(9.0F);
     }
     
 }
