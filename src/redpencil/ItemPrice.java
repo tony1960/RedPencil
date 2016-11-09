@@ -12,10 +12,33 @@ package redpencil;
 public class ItemPrice {
     
     
-    float price = 0.0F;
+    float price;
+    int   daysStable;
     
+    
+    public ItemPrice (float price){
+        this.price = price;
+    }
+    
+    public void setDaysStable (int daysStable){
+        this.daysStable = daysStable;
+    }
 
-    public float priceReduction(){
-        return   0.0F;
+    public Boolean priceReduction(Float reducedPrice){
+        
+        Float high;
+        Float low;
+        high = price * .95F;
+        low  = price * .70F;
+        
+           
+        if (reducedPrice.compareTo(low) < 0) return false;
+        
+        if (reducedPrice.compareTo(high) > 0) return false;        
+        
+        
+        
+        
+        return   true;
     }
 }
