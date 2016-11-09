@@ -55,13 +55,23 @@ public class ItemPrice {
         if (daysStable < 30) {
             return false;
         }
-
+        if (this.reducedPrice == 0){
         daysStable = 0;
-        this.reducedPrice = reducedPrice;
+        } // Else days stable remain the same
+     this.reducedPrice = reducedPrice;
 
+        
+        
         return true;
     }
 
+    
+    
+    public int daysRemaining(){
+        
+        return 30 - daysStable;
+    }
+    
     public Boolean promotionStillValid() {
 
         if (daysStable > 30) {
