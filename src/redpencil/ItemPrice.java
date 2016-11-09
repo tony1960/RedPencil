@@ -15,29 +15,42 @@ public class ItemPrice {
     float reducedPrice;
     int daysStable;
 
-    public void initCondtions (float price, int daysStable){
+    /**
+     * Sets initial  conditions
+     *
+     *
+     * @param price The orig price of the item
+     * @param daysStable THe number of days at this price
+     * @return true if the, otherwise false
+     */
+    
+    
+    public void initCondtions(float price, int daysStable) {
         this.price = price;
         this.daysStable = daysStable;
     }
-    
-    
+
     /*   reafactored
     public ItemPrice(float price) {
 
         this.price = price;
     }
-    */
-
+     */
+    /*
     public void setDaysStable(int daysStable) {
         this.daysStable = daysStable;
     }
+    */
 
-    public float getReducedPrice() {
-        return reducedPrice;
-    }
-
-    // Used to set reducedPrice if it means the correct bounds
-    public Boolean priceReduction(Float reducedPrice) {
+    
+     /**
+     * Sets initial  conditions
+     *
+     *
+     * @param reducedPrice The new reduced price 
+     * @return true if activation is allowed , otherwise false
+     */
+       public Boolean priceReduction(Float reducedPrice) {
 
         Float high;
         Float low;
@@ -55,28 +68,36 @@ public class ItemPrice {
         if (daysStable < 30) {
             return false;
         }
-        if (this.reducedPrice == 0){
-        daysStable = 0;
+        if (this.reducedPrice == 0) {
+            daysStable = 0;
         } // Else days stable remain the same
-     this.reducedPrice = reducedPrice;
+        this.reducedPrice = reducedPrice;
 
-        
-        
         return true;
     }
 
-    
-    
-    public int daysRemaining(){
-        
+       /**
+     * Sets initial  conditions
+     *
+     *
+     * @return  number of days remaining in the promotion
+     */
+    public int daysRemaining() {
+
         return 30 - daysStable;
     }
-    
+
+    /**
+     * Sets initial  conditions
+     *
+     *
+     * @return true if promtion is still valid , otherwise false
+     */
     public Boolean promotionStillValid() {
 
         if (daysStable > 30) {
             return false;
         }
         return true;
-    }    
+    }
 }
