@@ -95,13 +95,16 @@ public class ItemPriceTest {
 
     }
     
-   /*
-    
-     public void testPriceReduction() {
+   
+    @Test
+     public void testPriceFurtherReduction() {
         System.out.println("priceReduction");
-
+                instance.initCondtions(10, 29);
+        int ExpectedValue = 1;
         Boolean result = instance.priceReduction(9.0F);
-        assertTrue("Init Test", result);
+        int promotionDays = instance.daysRemaining();
+        //assertTrue("Init Test", result);
+        assertEquals (ExpectedValue, promotionDays);
     }
-    */
+  
 }
